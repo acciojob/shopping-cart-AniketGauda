@@ -1,4 +1,3 @@
-//your code here
 let arr = [];
 
 let pDiv = document.getElementById("tbl");
@@ -12,17 +11,20 @@ btn.addEventListener("click",(e)=>{
     e.preventDefault();
     let itm = document.getElementById("item-name-input");
     let prc = document.getElementById("item-price-input");
+    let qty = document.getElementById("item-qty-input");
 
 
     let obj = {
         item:`${itm.value}`,
-        price:`${prc.value}`
+        price:`${prc.value}`,
+        quantity:`${qty.value}`
     }
 
     arr.push(obj);
 
     itm.value = ``;
     prc.value = ``;
+    qty.value = ``;
 
     display(arr);
 })
@@ -32,7 +34,7 @@ function display(){
     let sm=0;
 
     arr.forEach((obj)=>{
-        sm+=parseInt(obj.price);
+        sm+=parseInt(obj.price*obj.quantity);
     })
 
     
@@ -43,7 +45,8 @@ function display(){
     pDiv.innerHTML += `
         <tr>
             <td id="item">${obj.item}</td>
-           <td id="price">${obj.price}</td>
+            <td id="qty">${obj.quantity}</td>
+            <td id="price">${obj.price}</td>
         </tr>
     `;
 }
